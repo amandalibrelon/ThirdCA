@@ -24,16 +24,27 @@ public class DBConnector {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
         } catch (ClassNotFoundException e) {
-            System.out.println("MySQL JDBC driver not found.");
+            System.err.println("MySQL JDBC driver not found.");
             e.printStackTrace();
             //this logs exception or display a user-friendly error message
         } catch (SQLException e) {
-            System.out.println("Failed to connect with database");
+            System.err.println("Failed to connect with database");
             e.printStackTrace();
         }
         
         return connection;
     }
-    
+  public static void closeConnection(Connection connection) {
+      if (connection != null) {
+          try {
+              connection.close();
+              
+          } catch (SQLException e) {
+              System.err.println("Failed to close the database connection");
+              e.printStackTrace();
+          }
+              
+      }
+  }  
     
 }
