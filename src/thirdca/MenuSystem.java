@@ -31,6 +31,12 @@ public class MenuSystem {
         System.out.println("4. Exit Menu");
     }
 
+    private void connectToAdmin() {
+        // Implement the logic to connect to the admin account
+        System.out.println("Connecting to Admin Account...");
+        // You can add more logic as needed
+    }
+
 // Method to handle user input and perform corresponding actions
     public void handleUserInput() {
         Scanner scanner = new Scanner(System.in);
@@ -81,6 +87,7 @@ public class MenuSystem {
             System.out.println("Invalid username or password Please try again.");
         }
     }
+
     private void displayAdminMenu() {
         // Display Admin options
         System.out.println("Select an option:");
@@ -88,7 +95,7 @@ public class MenuSystem {
         System.out.println("2. Change Username and Password");
         System.out.println("3. Return to Main Menu");
 
-     int choice = scanner.nextInt();
+        int choice = scanner.nextInt();
         scanner.nextLine(); // Consume newline character
 
         // Perform actions based on user input
@@ -152,6 +159,7 @@ public class MenuSystem {
                 System.out.println("Invalid choice.");
         }
     }
+
     private void connectToLecturer() {
         // Check username and password
         System.out.println("Please enter your username:");
@@ -191,13 +199,12 @@ public class MenuSystem {
         System.out.println("Managing user accounts...");
         // Add, modify, delete users logic here
     }
-        
-    private void changeUsernameAndPassword() {
-    // Implement change username and password functionality
-    System.out.println("Changing username and password...");
-    // Logic to change username and password
-}
 
+    private void changeUsernameAndPassword() {
+        // Implement change username and password functionality
+        System.out.println("Changing username and password...");
+        // Logic to change username and password
+    }
 
     private void generateCoursesReport() {
         // Implement functionality to generate Courses Report
@@ -222,12 +229,5 @@ public class MenuSystem {
         System.out.println("Generating Lecturer Report...");
         // Retrieve data from database for the logged-in lecturer and format report
     }
-
-    private void connectToAdmin() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-  
-
 
 }
