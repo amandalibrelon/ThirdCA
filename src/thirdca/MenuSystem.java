@@ -223,6 +223,10 @@ public class MenuSystem {
         // Retrieve data from database for the logged-in lecturer and format report
     }
 
+    private void connectToAdmin() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
   
 
 
