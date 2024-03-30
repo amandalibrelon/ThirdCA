@@ -76,4 +76,33 @@ public class Student {
     public void setProgramme(String programme) {
         this.programme = programme;
     }
+    
+    // toString method for easy debugging
+
+    /**
+     *
+     * @return
+     */
+    @Override
+     public String toString() {
+        return "Student{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", currentModules='" + currentModules + '\'' +
+                ", repeatModules='" + repeatModules + '\'' +
+                ", completedModules='" + completedModules + '\'' +
+                ", programme='" + programme + '\'' +
+                '}';
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        // Create a new Student object using the constructor
+        Student student = new Student("S001", "John Doe", "Maths, English", "Physics", "History", "Computer Science");
+
+        // Print student information
+        System.out.println(student);
+    }
 }
+    
+    

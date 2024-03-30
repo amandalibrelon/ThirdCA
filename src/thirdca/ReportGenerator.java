@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ReportGenerator {
 
-    public void generateCourseReport(List<Course> courses, ReportFormat format) {
+    public void generateCourseReport(List<Courses> courses, ReportFormat format) {
         switch (format) {
             case TXT:
                 writeToFile("course_report.txt", formatCourseReport(courses));
@@ -26,7 +26,7 @@ public class ReportGenerator {
 
     // Other methods for generating different types of reports
 
-    private String formatCourseReport(List<Course> courses) {
+    private String formatCourseReport(List<Courses> courses) {
         StringBuilder report = new StringBuilder();
         // Format the course report data
         return report.toString();

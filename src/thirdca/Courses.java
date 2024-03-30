@@ -11,17 +11,17 @@ import java.util.List;
  *
  * @author amand
  */
-public class Course { // class to represent courses
+public class Courses { // class to represent courses
     
     private String courseName;
     private String program;
     private String roomAssignment;
-    private List<Student> enrolledStudents;
-    private Lecturer lecturer;
+    private List<Students> enrolledStudents;
+    private Lecturers lecturer;
     
     
     // constructor
-    public Course(String courseName, String program, String roomAssignment, Lecturer lecturer){
+    public Courses(String courseName, String program, String roomAssignment, Lecturers lecturer){
        this.courseName = courseName;
        this.program = program; 
        this.roomAssignment = roomAssignment; 
@@ -56,19 +56,19 @@ public class Course { // class to represent courses
         this.roomAssignment = roomAssignment;
     }
 
-    public List<Student> getEnrolledStudents() {
+    public List<Students> getEnrolledStudents() {
         return enrolledStudents;
     }
 
-    public void setEnrolledStudents(List<Student> enrolledStudents) {
+    public void setEnrolledStudents(List<Students> enrolledStudents) {
         this.enrolledStudents = enrolledStudents;
     }
 
-    public Lecturer getLecturer() {
+    public Lecturers getLecturer() {
         return lecturer;
     }
 
-    public void setLecturer(Lecturer lecturer) {
+    public void setLecturer(Lecturers lecturer) {
         this.lecturer = lecturer;
     }
 }
