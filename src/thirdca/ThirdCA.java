@@ -10,15 +10,12 @@ import thirdca.DBConnector;
  */
 public class ThirdCA {
 
-    public static void main(String[] args) {
-        // Initialize components
+   public static void main(String[] args) {
         DBConnector dbConnector = new DBConnector();
-        MenuSystem menuSystem;
-        menuSystem = new MenuSystem(dbConnector);
-
-        // Start the menu system
-        menuSystem.start();
+        MenuSystem menuSystem = new MenuSystem(dbConnector);
+        menuSystem.handleUserInput();
     }
-}
+    }
+
 
 

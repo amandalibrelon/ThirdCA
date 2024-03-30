@@ -13,21 +13,24 @@ import java.util.Scanner;
 public class MenuSystem {
 
     private final DBConnector dbConnector;
+    private final Scanner scanner;
 
     // Constructor
     public MenuSystem(DBConnector dbConnector) {
         this.dbConnector = dbConnector;
+        this.scanner = new Scanner(System.in);
     }
 
     // Method to display the main menu options
     public void displayMainMenu() {
         System.out.println("Welcome to the Course Management System!");
-        System.out.println("Press 1 - to connect to Admin Account");
-        System.out.println("Press 2 - to connect to Office Account");
-        System.out.println("Press 3 - to connect to Lecturer Account");
-        System.out.println("Press 4 - to exit menu");
+        System.out.println("Select an option:");
+        System.out.println("1. Connect to Admin Account");
+        System.out.println("2. Connect to Office Account");
+        System.out.println("3. Connect to Lecturer Account");
+        System.out.println("4. Exit Menu");
     }
-   
+
 // Method to handle user input and perform corresponding actions
     public void handleUserInput() {
         Scanner scanner = new Scanner(System.in);
@@ -62,27 +65,53 @@ public class MenuSystem {
         scanner.close();
     }
 
-    private void connectToAdmin() {
-        // Check username and password
-        System.out.println("Enter username:");
+    // Method to connect to the Admin Account
+    private void connectToAdminAccount(Scanner scanner) {
+        System.out.println("Welcome to Admin Account");
+        System.out.print("Please enter your username: ");
         String username = scanner.nextLine();
-        System.out.println("Enter password:");
+        System.out.print("Please enter your password: ");
         String password = scanner.nextLine();
-
+        // checking username and password
         if (username.equals("admin") && password.equals("java")) {
             System.out.println("Welcome to Admin account");
             // Display Admin menu
             displayAdminMenu();
         } else {
-            System.out.println("Invalid username or password.");
+            System.out.println("Invalid username or password Please try again.");
+        }
+    }
+    private void displayAdminMenu() {
+        // Display Admin options
+        System.out.println("Select an option:");
+        System.out.println("1. Manage User Accounts");
+        System.out.println("2. Change Username and Password");
+        System.out.println("3. Return to Main Menu");
+
+     int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline character
+
+        // Perform actions based on user input
+        switch (choice) {
+            case 1:
+                manageUserAccounts();
+                break;
+            case 2:
+                changeUsernameAndPassword();
+                break;
+            case 3:
+                System.out.println("Returning to main menu...");
+                break;
+            default:
+                System.out.println("Invalid choice. Please enter a valid option.");
         }
     }
 
     private void connectToOffice() {
         // Check username and password
-        System.out.println("Enter username:");
+        System.out.println("Please enter your username:");
         String username = scanner.nextLine();
-        System.out.println("Enter password:");
+        System.out.println("Please enter your password:");
         String password = scanner.nextLine();
 
         if (username.equals("admin") && password.equals("java")) {
@@ -94,47 +123,13 @@ public class MenuSystem {
         }
     }
 
-    private void connectToLecturer() {
-        // Check username and password
-        System.out.println("Enter username:");
-        String username = scanner.nextLine();
-        System.out.println("Enter password:");
-        String password = scanner.nextLine();
-
-        if (username.equals("admin") && password.equals("java")) {
-            System.out.println("Welcome to Lecturer Account");
-            // Display Lecturer menu
-            displayLecturerMenu();
-        } else {
-            System.out.println("Invalid username or password.");
-        }
-    }
-
-    private void displayAdminMenu() {
-        // Implement Admin menu options
-        System.out.println("Press 1 - to manage user accounts");
-        System.out.println("Press 2 - to change username and password");
-        int adminChoice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline character
-        switch (adminChoice) {
-            case 1:
-                manageUserAccounts();
-                break;
-            case 2:
-                changeUsernameAndPassword();
-                break;
-            default:
-                System.out.println("Invalid choice.");
-        }
-    }
-
     private void displayOfficeMenu() {
         // Implement Office menu options
-        System.out.println("Press 1 - to generate Courses Report");
-        System.out.println("Press 2 - to generate Students Report");
-        System.out.println("Press 3 - to generate Lecturers Report");
-        System.out.println("Press 4 - to change username and password");
-        System.out.println("Press 5 - to log out");
+        System.out.println("1 - Generate Courses Report");
+        System.out.println("2 - Generate Students Report");
+        System.out.println("3 - Generate Lecturers Report");
+        System.out.println("4 - Change username and password");
+        System.out.println("5 - Log out");
         int officeChoice = scanner.nextInt();
         scanner.nextLine(); // Consume newline character
         switch (officeChoice) {
@@ -157,11 +152,26 @@ public class MenuSystem {
                 System.out.println("Invalid choice.");
         }
     }
+    private void connectToLecturer() {
+        // Check username and password
+        System.out.println("Please enter your username:");
+        String username = scanner.nextLine();
+        System.out.println("Please enter your password:");
+        String password = scanner.nextLine();
+
+        if (username.equals("admin") && password.equals("java")) {
+            System.out.println("Welcome to Lecturer Account");
+            // Display Lecturer menu
+            displayLecturerMenu();
+        } else {
+            System.out.println("Invalid username or password.");
+        }
+    }
 
     private void displayLecturerMenu() {
         // Implement Lecturer menu options
-        System.out.println("Press 1 - to generate Lecturer Report");
-        System.out.println("Press 2 - to change username and password");
+        System.out.println("1 - Generate Lecturer Report");
+        System.out.println("2 - Change username and password");
         int lecturerChoice = scanner.nextInt();
         scanner.nextLine(); // Consume newline character
         switch (lecturerChoice) {
@@ -176,7 +186,44 @@ public class MenuSystem {
         }
     }
 
-   
-    
+    private void manageUserAccounts() {
+        // Implement user account management functionality
+        System.out.println("Managing user accounts...");
+        // Add, modify, delete users logic here
+    }
+        
+    private void changeUsernameAndPassword() {
+    // Implement change username and password functionality
+    System.out.println("Changing username and password...");
+    // Logic to change username and password
+}
+
+
+    private void generateCoursesReport() {
+        // Implement functionality to generate Courses Report
+        System.out.println("Generating Courses Report...");
+        // Retrieve data from database and format report
+    }
+
+    private void generateStudentsReport() {
+        // Implement functionality to generate Students Report
+        System.out.println("Generating Students Report...");
+        // Retrieve data from database and format report
+    }
+
+    private void generateLecturersReport() {
+        // Implement functionality to generate Lecturers Report
+        System.out.println("Generating Lecturers Report...");
+        // Retrieve data from database and format report
+    }
+
+    private void generateLecturerReport() {
+        // Implement functionality to generate Lecturer Report for the logged-in lecturer
+        System.out.println("Generating Lecturer Report...");
+        // Retrieve data from database for the logged-in lecturer and format report
+    }
+
+  
+
 
 }
