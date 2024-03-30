@@ -10,7 +10,7 @@ package thirdca;
  */
 
 // Class to represent students
-public class Student {
+public class Students {
     private String studentId;
     private String studentName;
     private String currentModules;
@@ -19,7 +19,7 @@ public class Student {
     private String programme;
 
     // Constructor
-    public Student(String studentId, String studentName, String currentModules, String repeatModules, String completedModules, String programme) {
+    public Students(String studentId, String studentName, String currentModules, String repeatModules, String completedModules, String programme) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.currentModules = currentModules;
@@ -98,7 +98,7 @@ public class Student {
     // Example usage
     public static void main(String[] args) {
         // Create a new Student object using the constructor
-        Student student = new Student("S001", "John Doe", "Maths, English", "Physics", "History", "Computer Science");
+        Students student = new Students("S001", "John Doe", "Maths, English", "Physics", "History", "Computer Science");
 
         // Print student information
         System.out.println(student);

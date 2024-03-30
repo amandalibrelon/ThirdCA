@@ -62,9 +62,12 @@ public class User {
     }
 
     // Method to authenticate users
-    public boolean authenticate(String username, String password) {
+    public User authenticate(String username, String password) {
         User user = users.get(username);
-        return user != null && user.getPassword().equals(password);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null; // Authentication failed
     }
 
     // Method to change password
