@@ -8,6 +8,9 @@ import thirdca.DBConnector;
 /**
  * Main class for the ThirdCA application.
  */
+
+
+//github lik: https://github.com/amandalibrelon/ThirdCA
 public class ThirdCA {
 
    public static void main(String[] args) {
