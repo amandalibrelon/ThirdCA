@@ -14,11 +14,15 @@ public class MenuSystem {
 
     private final DBConnector dbConnector;
     private final Scanner scanner;
+    private final PasswordManager passwordManager;
+    private final UserManager userManager;
 
     // Constructor
     public MenuSystem(DBConnector dbConnector) {
         this.dbConnector = dbConnector;
         this.scanner = new Scanner(System.in);
+        this.passwordManager = new PasswordManager(); // Initialize PasswordManager
+        this.userManager = new UserManager(dbConnector);
     }
 
     // Method to display the main menu options
@@ -30,14 +34,8 @@ public class MenuSystem {
         System.out.println("3. Connect to Lecturer Account");
         System.out.println("4. Exit Menu");
     }
-
-    private void connectToAdmin() {
-        // Implement the logic to connect to the admin account
-        System.out.println("Connecting to Admin Account...");
-        // You can add more logic as needed
-    }
-
 // Method to handle user input and perform corresponding actions
+
     public void handleUserInput() {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -71,7 +69,13 @@ public class MenuSystem {
         scanner.close();
     }
 
+    private void connectToAdmin() {
+        //logic to connect to the admin account
+        System.out.println("Connecting to Admin Account...");
+        connectToAdminAccount(scanner);
+    }
     // Method to connect to the Admin Account
+
     private void connectToAdminAccount(Scanner scanner) {
         System.out.println("Welcome to Admin Account");
         System.out.print("Please enter your username: ");
@@ -195,15 +199,82 @@ public class MenuSystem {
     }
 
     private void manageUserAccounts() {
-        // Implement user account management functionality
-        System.out.println("Managing user accounts...");
-        // Add, modify, delete users logic here
+        boolean running = true;
+        while (running) {
+            System.out.println("Select an option:");
+            System.out.println("1. Add User");
+            System.out.println("2. Modify User");
+            System.out.println("3. Delete User");
+            System.out.println("4. Return to Main Menu");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    addUserToDatabase();
+                    break;
+                case 2:
+                    modifyUserInDatabase();
+                    break;
+                case 3:
+                    deleteUserFromDatabase();
+                    break;
+                case 4:
+                    System.out.println("Returning to main menu...");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
+
+    private void addUserToDatabase() {
+        System.out.println("Enter username:");
+        String username = scanner.nextLine();
+        System.out.println("Enter password:");
+        String password = scanner.nextLine();
+        System.out.println("Enter role:");
+        String role = scanner.nextLine();
+
+        UserManager userManager = new UserManager(dbConnector);
+        userManager.addUserToDatabase(username, password, role);
+    }
+
+    // Method to modify a user in the database
+    private void modifyUserInDatabase() {
+        System.out.println("Enter username of user to modify:");
+        String username = scanner.nextLine();
+        System.out.println("Enter new password:");
+        String newPassword = scanner.nextLine();
+        System.out.println("Enter new role:");
+        String newRole = scanner.nextLine();
+
+        UserManager userManager = new UserManager(dbConnector);
+        userManager.modifyUserInDatabase(username, newPassword, newRole);
+    }
+
+    // Method to delete a user from the database
+    private void deleteUserFromDatabase() {
+        System.out.println("Enter username of user to delete:");
+        String username = scanner.nextLine();
+
+        UserManager userManager = new UserManager(dbConnector);
+        userManager.deleteUserFromDatabase(username);
     }
 
     private void changeUsernameAndPassword() {
-        // Implement change username and password functionality
-        System.out.println("Changing username and password...");
-        // Logic to change username and password
+        // Get user input for current username, new username, and password
+        System.out.println("Enter current username:");
+        String currentUsername = scanner.nextLine();
+        System.out.println("Enter new username:");
+        String newUsername = scanner.nextLine();
+        System.out.println("Enter password:");
+        String password = scanner.nextLine();
+
+        // Call changeUsername method of PasswordManager
+        passwordManager.changeUsername(currentUsername, newUsername, password);
     }
 
     private void generateCoursesReport() {
