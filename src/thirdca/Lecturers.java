@@ -11,22 +11,27 @@ import java.util.List;
  * @author amand
  */
 public class Lecturers {
+
     private String lecturerName;
     private UserRole role;
     private List<String> modulesTaught;
     private List<String> classesTaught;
     private List<String> studentsInModules;
-    
+
     // Constructor
-    public Lecturers( String lecturerName, UserRole role, List<String> modulesTaught, List<String> classesTaught, List<String> studentsInModules) {
-   
+    public Lecturers(String lecturerName) {
+
         this.lecturerName = lecturerName;
         this.role = role;
         this.modulesTaught = modulesTaught;
         this.classesTaught = classesTaught;
         this.studentsInModules = studentsInModules;
     }
-    
+
+    @Override
+    public String toString() {
+        return lecturerName;
+    }
 
     public String getLecturerName() {
         return lecturerName;
@@ -59,13 +64,13 @@ public class Lecturers {
     public void setClassesTaught(List<String> classesTaught) {
         this.classesTaught = classesTaught;
     }
-    
+
     public List<String> getStudentsInModules() {
         return studentsInModules;
     }
-      public void setStudentsInModules(List<String> studentsInModules) {
+
+    public void setStudentsInModules(List<String> studentsInModules) {
         this.studentsInModules = studentsInModules;
     }
-   
-}
 
+}
