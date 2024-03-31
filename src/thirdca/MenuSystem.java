@@ -4,6 +4,7 @@
  */
 package thirdca;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,9 @@ public class MenuSystem {
     private final Scanner scanner;
     private final PasswordManager passwordManager;
     private final UserManager userManager;
+    private final ReportGenerator reportGenerator;
+    private final DatabaseHandler databaseHandler;
+   
 
     // Constructor
     public MenuSystem(DBConnector dbConnector) {
@@ -23,6 +27,8 @@ public class MenuSystem {
         this.scanner = new Scanner(System.in);
         this.passwordManager = new PasswordManager(); // Initialize PasswordManager
         this.userManager = new UserManager(dbConnector);
+        this.reportGenerator = new ReportGenerator();
+        this.databaseHandler = new DatabaseHandler();
     }
 
     // Method to display the main menu options
@@ -188,7 +194,7 @@ public class MenuSystem {
         scanner.nextLine(); // Consume newline character
         switch (lecturerChoice) {
             case 1:
-                generateLecturerReport();
+                generateLecturersReport();
                 break;
             case 2:
                 changeUsernameAndPassword();
@@ -277,28 +283,27 @@ public class MenuSystem {
         passwordManager.changeUsername(currentUsername, newUsername, password);
     }
 
+ // Method to generate Courses Report
     private void generateCoursesReport() {
-        // Implement functionality to generate Courses Report
-        System.out.println("Generating Courses Report...");
-        // Retrieve data from database and format report
+        // Retrieve courses data from the database
+        List<Courses> courses = databaseHandler.retrieveCoursesFromDatabase();
+        // Generate Courses Report
+        reportGenerator.generateCoursesReport(courses, ReportGenerator.ReportFormat.CONSOLE);
     }
 
+    // Method to generate Students Report
     private void generateStudentsReport() {
-        // Implement functionality to generate Students Report
-        System.out.println("Generating Students Report...");
-        // Retrieve data from database and format report
+        // Retrieve students data from the database
+        List<Students> students = databaseHandler.retrieveStudentsFromDatabase();
+        // Generate Students Report
+        reportGenerator.generateStudentsReport(students, ReportGenerator.ReportFormat.CONSOLE);
     }
 
+    // Method to generate Lecturers Report
     private void generateLecturersReport() {
-        // Implement functionality to generate Lecturers Report
-        System.out.println("Generating Lecturers Report...");
-        // Retrieve data from database and format report
+        // Retrieve lecturers data from the database
+        List<Lecturers> lecturers = databaseHandler.retrieveLecturersFromDatabase();
+        // Generate Lecturers Report
+        reportGenerator.generateLecturersReport(lecturers, ReportGenerator.ReportFormat.CONSOLE);
     }
-
-    private void generateLecturerReport() {
-        // Implement functionality to generate Lecturer Report for the logged-in lecturer
-        System.out.println("Generating Lecturer Report...");
-        // Retrieve data from database for the logged-in lecturer and format report
-    }
-
 }
